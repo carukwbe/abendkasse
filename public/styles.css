@@ -1,0 +1,408 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f5f7f9;
+  color: #17202a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(16px, 4vw, 36px);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid #d9e1e8;
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand strong {
+  font-size: 18px;
+}
+
+.brand span,
+.muted {
+  color: #627386;
+  font-size: 13px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nav button,
+.secondary,
+.danger {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: #e8edf2;
+  color: #17202a;
+  font-weight: 700;
+}
+
+.nav button.active,
+.primary {
+  background: #0f766e;
+  color: white;
+}
+
+.danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.content {
+  flex: 1;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 24px clamp(14px, 4vw, 28px) 132px;
+}
+
+.login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.login form {
+  width: min(420px, 100%);
+  display: grid;
+  gap: 14px;
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid #d9e1e8;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(31, 41, 55, 0.08);
+}
+
+.login h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #344255;
+}
+
+input {
+  min-height: 44px;
+  width: 100%;
+  border: 1px solid #c7d2dc;
+  border-radius: 8px;
+  padding: 0 12px;
+  background: white;
+  color: #17202a;
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+}
+
+.ticket-tile {
+  position: relative;
+  min-height: 142px;
+  display: grid;
+  align-content: space-between;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 8px;
+  color: white;
+  text-align: left;
+  box-shadow: inset 0 -56px 72px rgba(0, 0, 0, 0.18);
+}
+
+.ticket-tile strong {
+  font-size: 22px;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.ticket-tile .price {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.badge {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  min-width: 34px;
+  min-height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #17202a;
+  font-weight: 900;
+}
+
+.order-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  background: #ffffff;
+  border-top: 1px solid #d9e1e8;
+  box-shadow: 0 -18px 40px rgba(31, 41, 55, 0.08);
+}
+
+.order-inner {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  padding: 14px clamp(14px, 4vw, 28px);
+  align-items: center;
+}
+
+.order-lines {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.order-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #edf2f7;
+  color: #243244;
+  font-weight: 800;
+}
+
+.chip-remove {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #dbe3eb;
+  color: #243244;
+  font-weight: 900;
+}
+
+.pay-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.total {
+  min-width: 110px;
+  text-align: right;
+}
+
+.total span {
+  display: block;
+  color: #627386;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.total strong {
+  font-size: 26px;
+}
+
+.primary {
+  min-height: 50px;
+  padding: 0 22px;
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+.status {
+  min-height: 24px;
+  margin: 14px 0 0;
+  color: #0f766e;
+  font-weight: 800;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.admin-layout {
+  display: grid;
+  gap: 18px;
+}
+
+.section {
+  display: grid;
+  gap: 14px;
+  padding: 20px 0;
+  border-bottom: 1px solid #d9e1e8;
+}
+
+.section-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.section h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.metric {
+  display: grid;
+  gap: 8px;
+  min-height: 116px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #d9e1e8;
+  border-radius: 8px;
+}
+
+.metric span {
+  color: #627386;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.metric strong {
+  font-size: 30px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid #d9e1e8;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e7edf2;
+  text-align: left;
+}
+
+th {
+  color: #627386;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+td:last-child,
+th:last-child {
+  text-align: right;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr 0.7fr auto auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+
+.checkbox input {
+  width: 18px;
+  min-height: 18px;
+}
+
+@media (max-width: 760px) {
+  .topbar,
+  .order-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    align-items: stretch;
+  }
+
+  .order-inner {
+    gap: 10px;
+  }
+
+  .pay-area {
+    justify-content: space-between;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form-row label:first-child {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,4 @@
+data/*.sqlite
+data/*.sqlite-*
+*.log
+node_modules/
