@@ -7,6 +7,7 @@
     "start": "node server/index.js",
     "dev": "NODE_ENV=development PORT=3100 node server/index.js",
     "dev:watch": "NODE_ENV=development PORT=3100 node --watch server/index.js",
+    "reset-db": "node server/reset-db.js",
     "check": "node --check server/index.js"
   },
   "engines": {

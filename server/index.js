@@ -14,6 +14,7 @@ const env = {
   port: Number(process.env.PORT || 3100),
   databasePath: resolve(rootDir, process.env.DATABASE_PATH || "./data/abendkasse.sqlite"),
   sessionSecret: process.env.SESSION_SECRET || "dev-session-secret-change-me",
+  nodeEnv: process.env.NODE_ENV || "development",
   adminUsername: process.env.ADMIN_USERNAME || "admin",
   adminPassword: process.env.ADMIN_PASSWORD || "admin",
   cashierUsername: process.env.CASHIER_USERNAME || "cashier",
@@ -140,10 +141,18 @@ function seedData() {
       VALUES (?, ?, ?, ?)
     `);
     [
-      ["Adult", 1200, "#14532d", 10],
-      ["Reduced", 800, "#1d4ed8", 20],
-      ["Child", 500, "#b45309", 30],
-      ["Family", 3000, "#7c3aed", 40]
+      ["Full Weekend", 10000, "#14532d", 10],
+      ["Tagesticket Do", 3000, "#14532d", 10],
+      ["Tagesticket Fr", 5000, "#14532d", 10],
+      ["Tagesticket Sa", 5000, "#14532d", 10],
+      ["Anwohni Full Weekend", 6000, "#1d4ed8", 20],
+      ["Anwohni Tagesticket Do", 1500, "#14532d", 10],
+      ["Anwohni Tagesticket Fr", 3000, "#14532d", 10],
+      ["Anwohni Tagesticket Sa", 3000, "#14532d", 10],
+      ["Artist Begleitung Full Weekend", 4000, "#6b7280", 30],
+      ["Artist Begleitung Tagesticket Do", 0, "#6b7280", 30],
+      ["Artist Begleitung Tagesticket Fr", 0, "#6b7280", 30],
+      ["Artist Begleitung Tagesticket Sa", 0, "#6b7280", 30]
     ].forEach((ticket) => insertTicket.run(...ticket));
   }
 }
@@ -525,9 +534,12 @@ function serveStatic(path, res) {
     ".json": "application/json; charset=utf-8",
     ".svg": "image/svg+xml"
   };
+  const ext = extname(requested);
+  const isProd = env.nodeEnv === "production";
+  const cacheControl = ext === ".html" ? "no-store" : (isProd ? "public, max-age=3600" : "no-store");
   res.writeHead(200, {
-    "Content-Type": types[extname(requested)] || "application/octet-stream",
-    "Cache-Control": extname(requested) === ".html" ? "no-store" : "public, max-age=3600"
+    "Content-Type": types[ext] || "application/octet-stream",
+    "Cache-Control": cacheControl
   });
   res.end(readFileSync(requested));
 }
